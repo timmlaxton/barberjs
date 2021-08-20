@@ -31,17 +31,26 @@ function init() {
     const currentLeft = currentPage.querySelector(".hero .model-left");
     const currentRight = currentPage.querySelector(".hero .model-right");
     const nextText = nextPage.querySelector(".details");
-    const portofolio = document.querySelector(".portofolio");
+    const portfolio = document.querySelector(".portfolio");
 
     const tl = new TimelineMax();
 
-    tl.fromTo(currentLeft, 0.3, { y: "-10%" }, { y: "-100%" }).fromTo(
-      currentRight,
-      0.3,
-      { y: "10%" },
-      { y: "-100%" },
-      "-=0.2"
-    );
+    tl.fromTo(currentLeft, 0.3, { y: "-10%" }, { y: "-100%" })
+      .fromTo(currentRight, 0.3, { y: "10%" }, { y: "-100%" }, "-=0.2")
+      .to(portfolio, 0.3, { backgroundImage: backgrounds[pageNumber] })
+      .fromTo(
+        currentPage,
+        0.3,
+        { opacity: 1, pointerEvents: "all" },
+        { opacity: 0, pointerEvents: "none" }
+      )
+      .fromTo(
+        nextPage,
+        0.3,
+        { opacity: 0, pointerEvents: "none" },
+        { opacity: 1, pointerEvents: "all" },
+        "-=0.6"
+      );
   }
 }
 
